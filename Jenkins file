@@ -3,13 +3,13 @@ node
 echo 'Jenkins Node Name:-' 
 echo "${env.NODE_NAME}"
 
-properties([buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '2', daysToKeepStr: '', numToKeepStr: '2'))])
+properties([buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '3', daysToKeepStr: '', numToKeepStr: '2'))])
 
 def MAVEN_HOME = tool name: "Maven - 3.9.1"
 
 stage('get code from github')
 {
-git branch: 'dev', credentialsId: '47285e52-f8e7-47a4-9570-d36eef4acbee', url: 'https://github.com/ShirishaMitti/maven-web-application.git'
+git branch: 'dev', credentialsId: '47285e52-f8e7-47a4-9570-d36eef4acbee', url: 'https://github.com/ShirishaMitti/java-web-app-docker.git'
 }
 
 stage('Build')
