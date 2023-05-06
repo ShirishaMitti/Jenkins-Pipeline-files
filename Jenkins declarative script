@@ -2,7 +2,7 @@ pipeline
 {
 agent any
 
-echo 'Jenkins Node Name:- ${env.NODE_NAME}'
+sh "echo Jenkins Node Name:- ${env.NODE_NAME}"
 
 tools{
 maven "Maven - 3.9.1"
