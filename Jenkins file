@@ -19,7 +19,7 @@ sh "${MAVEN_HOME}/bin/mvn clean package"
 
 stage('Deploying war to Tomcat server')
 {
-deploy adapters: [tomcat9(credentialsId: '68d86d50-002c-4342-827e-e473bd0a94c7', path: '', url: 'http://54.167.112.121:1332/')], contextPath: null, war: 'maven-web-application.war'
+deploy adapters: [tomcat9(credentialsId: '68d86d50-002c-4342-827e-e473bd0a94c7', path: '', url: 'http://54.167.112.121:1332/')], contextPath: null, war: '**/maven-web-application.war'
 }
 stage('Send Email to user after application deployment')
 {
