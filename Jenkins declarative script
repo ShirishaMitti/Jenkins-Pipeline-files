@@ -1,0 +1,65 @@
+pipeline
+{
+agent any
+
+echo 'Jenkins Node Name:- ${env.NODE_NAME}'
+
+tools{
+maven "Maven - 3.9.1"
+}
+
+options{
+timestamps()
+buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '3', daysToKeepStr: '', numToKeepStr: '3'))
+}
+
+stages{
+
+stage('get code from github')
+{
+steps{
+git branch: 'dev', credentialsId: '47285e52-f8e7-47a4-9570-d36eef4acbee', url: 'https://github.com/ShirishaMitti/maven-web-application.git'
+}
+}
+
+stage('Build') {
+steps{
+sh "mvn clean package"
+}
+}
+
+stage('Deploying war to Tomcat server')
+{
+steps{
+sshagent(['b345b2cc-bb85-4430-b564-02c7ba5b9b4a']) {
+    // some block
+sh "scp -o StrictHostKeyChecking=no target/maven-web-application.war ec2-user@54.167.112.121:/opt/apache-tomcat-9.0.74/webapps"
+}
+}
+}
+
+
+}
+
+post{
+
+success {
+emailext attachLog: true, body: '''Hi Shirisha,
+
+Congrats. $JOB_NAME - Build $BUILD_NUMBER is successful.
+
+Thanks,
+Jenkins''', subject: '$JOB_NAME - Build $BUILD_NUMBER is Successful', to: 'shirisha.mitti32@gmail.com'
+}
+failure{
+emailext attachLog: true, body: '''Hi Shirisha,
+
+$JOB_NAME - Build $BUILD_NUMBER is Failed. Please below URL for more details
+
+$BUILD_URL
+
+Thanks,
+Jenkins''', subject: '$JOB_NAME - Build $BUILD_NUMBER is Failed', to: 'shirisha.mitti32@gmail.com'
+}
+}
+
