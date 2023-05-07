@@ -1,6 +1,9 @@
 pipeline
 {
-agent any
+
+agent {
+label 'nodes'
+}
 
 //echo is not working in Pipeline Declarative script
 //sh "echo "This Declarative script is running in Jenkins Node - ${env.NODE_NAME}""
