@@ -2,7 +2,8 @@ pipeline
 {
 agent any
 
-echo "This Declarative script is running in Jenkins Node - ${env.NODE_NAME}"
+//echo is not working in Pipeline Declarative script
+//echo "This Declarative script is running in Jenkins Node - ${env.NODE_NAME}"
 
 tools{
 maven "Maven - 3.9.1"
