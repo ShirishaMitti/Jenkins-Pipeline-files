@@ -2,7 +2,7 @@ pipeline
 {
 agent any
 
-echo Jenkins Node Name:- ${NODE_NAME}
+echo "This Declarative script is running in Jenkins Node - ${NODE_NAME}"
 
 tools{
 maven "Maven - 3.9.1"
