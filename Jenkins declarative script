@@ -53,7 +53,7 @@ emailext attachLog: true, body: '''Hi Shirisha,
 Congrats. $JOB_NAME - Build $BUILD_NUMBER is successful.
 
 Thanks,
-Jenkins''', subject: '$JOB_NAME - Build $BUILD_NUMBER is Successful', to: 'shirisha.mitti32@gmail.com'
+Jenkins''', subject: '$JOB_NAME - Build $BUILD_NUMBER is Successful', to: 'shirisha.mitti32@gmail.com,raghamitti2@gmail.com'
 }
 failure{
 emailext attachLog: true, body: '''Hi Shirisha,
@@ -63,7 +63,7 @@ $JOB_NAME - Build $BUILD_NUMBER is Failed. Please below URL for more details
 $BUILD_URL
 
 Thanks,
-Jenkins''', subject: '$JOB_NAME - Build $BUILD_NUMBER is Failed', to: 'shirisha.mitti32@gmail.com'
+Jenkins''', subject: '$JOB_NAME - Build $BUILD_NUMBER is Failed', to: 'shirisha.mitti32@gmail.com,raghamitti2@gmail.com'
 }
 }
 
